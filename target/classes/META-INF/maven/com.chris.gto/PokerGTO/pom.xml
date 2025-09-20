@@ -48,18 +48,10 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         
-        <!-- 移除這個未知的依賴，除非你確實需要它 -->
-        <!-- 
-        <dependency>
-            <groupId>EAMS1</groupId>
-            <artifactId>EAMS1</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        -->
+       
     </dependencies>
 
     <build>
