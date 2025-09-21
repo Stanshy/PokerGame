@@ -1,23 +1,12 @@
 package com.chris.poker.dto;
 
-import java.util.List;
 
 public class CreateGameRequest {
-    private List<PlayerDto> players;
     private int smallBlind;
     private int bigBlind;
     
     
     
-    public List<PlayerDto> getPlayers() {
-		return players;
-	}
-
-
-
-	public void setPlayers(List<PlayerDto> players) {
-		this.players = players;
-	}
 
 
 
