@@ -1,8 +1,11 @@
 package com.chris.poker.dto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.chris.poker.card.Card;
+import com.chris.poker.domain.GamePhase;
 import com.chris.poker.domain.GameState;
 import com.chris.poker.domain.Player;
 
@@ -17,7 +20,7 @@ public class GameStateResponse {
     private int bigBlindAmount;
     private int buttonIndex;
     private boolean bettingRoundComplete;
-    
+    private Map<String, List<Card>> showdownHands;
     
     
     //靜態轉換方法
@@ -30,6 +33,10 @@ public class GameStateResponse {
         response.buttonIndex = gameState.getButtonIndex();
         response.currentHighestBet = gameState.getCurrentHighestBet();
         response.bettingRoundComplete = gameState.isCurrentBettingRoundComplete();
+        
+        if (gameState.getCurrentPhase() == GamePhase.SHOWDOWN) {
+            response.setShowdownHands(gameState.getShowdownHands());
+        }
         
         Player currentPlayer = gameState.getCurrentPlayer();
         response.currentPlayer = currentPlayer != null ? currentPlayer.getName() : null;
@@ -107,6 +114,16 @@ public class GameStateResponse {
 	public void setBettingRoundComplete(boolean bettingRoundComplete) {
 		this.bettingRoundComplete = bettingRoundComplete;
 	}
+
+	public Map<String, List<Card>> getShowdownHands() {
+		return showdownHands;
+	}
+
+	public void setShowdownHands(Map<String, List<Card>> showdownHands) {
+		this.showdownHands = showdownHands;
+	}
+	
+	
     
     
 }

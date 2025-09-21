@@ -166,6 +166,21 @@ import com.chris.poker.evaluation.HandRank;
 	    		distributePot();
 	    	}
 	    }
+	    
+	    //獲取攤牌玩家手牌資訊
+	    public Map<String, List<Card>> getShowdownHands(){
+	    	List<Player> playerInHnad =getPlayersInHand();
+	    	Map<String, List<Card>> showdownHands = new HashMap<>();
+	    	
+	    	if(currentPhase == GamePhase.SHOWDOWN) {
+	    		for(Player p :playerInHnad ) {
+	    			showdownHands.put(p.getName(), p.getHand().getCards());
+	    		}
+	    	}
+	    	return showdownHands;
+	    }
+	    
+	    
 	    //計算排型大小
 	    private Map<Player,HandRank> compareHands(List<Player> players) {
 	    	Map<Player,HandRank> playersRank = new HashMap<Player, HandRank>();

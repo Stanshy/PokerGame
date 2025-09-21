@@ -1,17 +1,10 @@
 package com.chris.poker.dto;
 
 public class PlayerActionRequest {
-    private String playerName;
     private String action;
     private Integer amount;
     
     
-	public String getPlayerName() {
-		return playerName;
-	}
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
 	public String getAction() {
 		return action;
 	}
