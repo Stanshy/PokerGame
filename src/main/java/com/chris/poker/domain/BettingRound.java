@@ -51,7 +51,10 @@ public class BettingRound {
 		}
 		boolean sbAllIn = !smallBlindPlayer.bet(smallBlindAmount);
 		boolean bbAllIn = !bigBlindPlayer.bet(bigBlindAmount);
-
+		
+		smallBlindPlayer.resetLastActionOnly();
+	    bigBlindPlayer.resetLastActionOnly();
+	    
 		if (sbAllIn) {
 			smallBlindPlayer.allin();
 		}

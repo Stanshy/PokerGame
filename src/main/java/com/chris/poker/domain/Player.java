@@ -155,6 +155,10 @@ public class Player {
 		this.currentBet = 0;
 		this.lastAction = PlayerAction.NONE;
 	}
+	//給大小盲用
+	public void resetLastActionOnly() {
+	    this.lastAction = PlayerAction.NONE;
+	}
 
 	// 獲得贏的籌碼
 	public void winChips(int amount) {
