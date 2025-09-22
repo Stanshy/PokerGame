@@ -1,4 +1,4 @@
-package com.chris.poker.dto;
+package com.chris.poker.dto.seat;
 
 public class JoinSeatRequest {
     private int seatNumber;

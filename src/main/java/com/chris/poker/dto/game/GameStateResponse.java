@@ -1,4 +1,4 @@
-package com.chris.poker.dto;
+package com.chris.poker.dto.game;
 
 import java.util.List;
 import java.util.Map;
@@ -8,6 +8,8 @@ import com.chris.poker.card.Card;
 import com.chris.poker.domain.GamePhase;
 import com.chris.poker.domain.GameState;
 import com.chris.poker.domain.Player;
+import com.chris.poker.dto.player.PlayerResponse;
+import com.chris.poker.dto.pot.PotResponse;
 
 public class GameStateResponse {
     private String currentPhase;

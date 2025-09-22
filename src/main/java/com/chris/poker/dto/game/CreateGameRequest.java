@@ -1,4 +1,4 @@
-package com.chris.poker.dto;
+package com.chris.poker.dto.game;
 
 
 public class CreateGameRequest {

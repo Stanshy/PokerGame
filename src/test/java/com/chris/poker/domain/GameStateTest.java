@@ -374,7 +374,7 @@ class GameStateTest {
 	    
 	    // Alice 全押（籌碼不足跟注）
 	    System.out.println("\n3. Alice 全押:");
-	    boolean aliceAllIn = game.executePlayerAction(playerA, Action.allIn(0));
+	    boolean aliceAllIn = game.executePlayerAction(playerA, Action.allIn());
 	    System.out.println("執行成功: " + aliceAllIn);
 	    System.out.println("Alice 籌碼: " + playerA.getChips() + ", 下注: " + playerA.getCurrentBet());
 	    System.out.println("Alice 狀態: " + playerA.getStatus());

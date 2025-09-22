@@ -1,4 +1,4 @@
-package com.chris.poker.dto;
+package com.chris.poker.dto.player;
 
 public class PlayerActionRequest {
     private String action;

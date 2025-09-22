@@ -5,15 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import com.chris.poker.dto.ApiResponse;
-import com.chris.poker.dto.CreateGameRequest;
-import com.chris.poker.dto.GameStateResponse;
-import com.chris.poker.dto.JoinSeatRequest;
-import com.chris.poker.dto.JoinSeatResponse;
-import com.chris.poker.dto.LeaveSeatRequest;
-import com.chris.poker.dto.PlayerActionRequest;
-import com.chris.poker.dto.PlayerHandResponse;
-import com.chris.poker.dto.SeatsStateResponse;
 import com.chris.poker.dto.TokenResponse;
+import com.chris.poker.dto.game.CreateGameRequest;
+import com.chris.poker.dto.game.GameStateResponse;
+import com.chris.poker.dto.game.HandHistoryResponse;
+import com.chris.poker.dto.player.PlayerActionRequest;
+import com.chris.poker.dto.player.PlayerHandResponse;
+import com.chris.poker.dto.seat.JoinSeatRequest;
+import com.chris.poker.dto.seat.JoinSeatResponse;
+import com.chris.poker.dto.seat.LeaveSeatRequest;
+import com.chris.poker.dto.seat.SeatsStateResponse;
 import com.chris.poker.seat.SeatInfo;
 import com.chris.poker.seat.SeatManager;
 import com.chris.poker.service.GameBroadcastService;
@@ -22,6 +23,7 @@ import com.chris.poker.util.TokenUtil;
 import com.chris.poker.domain.Action;
 import com.chris.poker.domain.GamePhase;
 import com.chris.poker.domain.GameState;
+import com.chris.poker.domain.HandHistory;
 import com.chris.poker.domain.Player;
 
 import java.util.*;
@@ -204,6 +206,30 @@ public class PokerGameController {
 		SeatsStateResponse response = new SeatsStateResponse(seats, playerCount, canStartGame);
 		return ResponseEntity.ok(ApiResponse.success(response));
 	}
+	
+	/*
+	 * 牌局紀錄
+	 * */
+	//獲取牌局紀錄
+	@GetMapping("/history")
+	public ResponseEntity<ApiResponse<List<HandHistoryResponse>>> getHandHistory(){
+		
+		List<HandHistoryResponse> histories = gameState.getHandHistories().stream().map(HandHistoryResponse::from).collect(Collectors.toList());
+		
+		return ResponseEntity.ok(ApiResponse.success(histories));
+	}
+	
+	
+	//獲取特定手牌紀錄
+	@GetMapping("/history/{handId}")
+	public ResponseEntity<ApiResponse<HandHistoryResponse>> getHandDetail(@PathVariable int handId){
+		
+		HandHistory history = gameState.getHandHistories().stream()
+				.filter(h->h.getHandNumber() == handId).findFirst().orElseThrow(()-> new IllegalArgumentException("找不到手牌:"+handId));
+		
+		return ResponseEntity.ok(ApiResponse.success(HandHistoryResponse.from(history)));
+	}
+	
 
 	// 輔助方法
 
@@ -223,7 +249,7 @@ public class PokerGameController {
 		case "RAISE":
 			return Action.raise(request.getAmount());
 		case "ALL_IN":
-			return Action.allIn(request.getAmount());
+			return Action.allIn();
 		default:
 			throw new IllegalArgumentException("無效的行動類型: " + request.getAction());
 		}

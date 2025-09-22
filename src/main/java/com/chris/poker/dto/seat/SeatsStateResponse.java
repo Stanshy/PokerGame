@@ -1,4 +1,4 @@
-package com.chris.poker.dto;
+package com.chris.poker.dto.seat;
 
 import com.chris.poker.seat.SeatInfo;
 import java.util.Map;

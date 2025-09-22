@@ -1,4 +1,4 @@
-package com.chris.poker.dto;
+package com.chris.poker.dto.player;
 
 import java.util.List;
 import java.util.stream.Collectors;

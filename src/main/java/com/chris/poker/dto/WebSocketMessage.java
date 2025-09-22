@@ -2,6 +2,8 @@ package com.chris.poker.dto;
 
 import java.util.Map;
 
+import com.chris.poker.dto.game.GameStateResponse;
+
 public class WebSocketMessage {
     private String type; 
     private Object data;  

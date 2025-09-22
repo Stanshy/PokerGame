@@ -1,9 +1,9 @@
 package com.chris.poker.service;
 
 import com.chris.poker.domain.GameState;
-import com.chris.poker.dto.GameStateResponse;
-import com.chris.poker.dto.SeatsStateResponse;
 import com.chris.poker.dto.WebSocketMessage;
+import com.chris.poker.dto.game.GameStateResponse;
+import com.chris.poker.dto.seat.SeatsStateResponse;
 import com.chris.poker.seat.SeatInfo;
 import com.chris.poker.websocket.GameWebSocketHandler;
 

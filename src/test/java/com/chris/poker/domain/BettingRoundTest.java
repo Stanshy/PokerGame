@@ -281,7 +281,7 @@ class BettingRoundTest {
 	        
 	        // Alice 全押（她只有100籌碼剩餘）
 	        System.out.println("\nAlice 全押:");
-	        boolean allinSuccess = round.executeAction(playerA, Action.allIn(0));
+	        boolean allinSuccess = round.executeAction(playerA, Action.allIn());
 	        System.out.println("執行成功: " + allinSuccess);
 	        System.out.println("Alice 籌碼: " + playerA.getChips());
 	        System.out.println("Alice 下注: " + playerA.getCurrentBet());
@@ -290,7 +290,7 @@ class BettingRoundTest {
 	        
 	        // Bob 也全押
 	        System.out.println("\nBob 全押:");
-	        boolean bobAllinSuccess = round.executeAction(playerB, Action.allIn(0));
+	        boolean bobAllinSuccess = round.executeAction(playerB, Action.allIn());
 	        System.out.println("執行成功: " + bobAllinSuccess);
 	        System.out.println("Bob 籌碼: " + playerB.getChips());
 	        System.out.println("Bob 下注: " + playerB.getCurrentBet());
@@ -379,14 +379,14 @@ class BettingRoundTest {
 	        
 	        // Alice 全押（只能全押到 50，因為已經下了 50）
 	        System.out.println("\n2. Alice 全押:");
-	        round.executeAction(playerA, Action.allIn(0));
+	        round.executeAction(playerA, Action.allIn());
 	        System.out.println("Alice 下注: " + playerA.getCurrentBet());
 	        System.out.println("當前玩家: " + (round.getCurrentPlayer() != null ? round.getCurrentPlayer().getName() : "無"));
 	        System.out.println("當前最高下注: " + round.getCurrentHighestBet());
 	        
 	        // Bob 全押（已下注 100，再全押剩餘 50）
 	        System.out.println("\n3. Bob 全押:");
-	        round.executeAction(playerB, Action.allIn(0));
+	        round.executeAction(playerB, Action.allIn());
 	        System.out.println("Bob 下注: " + playerB.getCurrentBet());
 	        System.out.println("當前玩家: " + (round.getCurrentPlayer() != null ? round.getCurrentPlayer().getName() : "無"));
 	        System.out.println("當前最高下注: " + round.getCurrentHighestBet());

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 
 
+
 /**
  * 管理德州撲克的底池系統 支援主池和邊池的分配
  */
@@ -73,8 +74,9 @@ public class Pot {
 	}
 	
 	//分配獲勝獎金
-	public Map<Player, Integer> distributePots(List<List<Player>> winners) {
-		Map<Player, Integer> distribution = new HashMap<>();
+	public List<WinnerInfo>  distributePots(List<List<Player>> winners) {
+		List<WinnerInfo> winnerInfo = new ArrayList<>();
+		
 		for(int i = 0 ; i<pots.size(); i++) {
 			SidePot pot = pots.get(i);
 			List<Player> potWinners = winners.get(i);
@@ -92,12 +94,12 @@ public class Pot {
 				if(j<remainder) {
 					winAmount+=1;
 				}
-				distribution.merge(winner, winAmount, Integer::sum);//沒有這個key就put 有就相加
 				winner.winChips(winAmount);
+				winnerInfo.add(new WinnerInfo(winner.getName(), winAmount));
 			}
 			pot.clear();
 		}
-		return distribution;
+		return winnerInfo;
 	}
 	
 	//一個贏家

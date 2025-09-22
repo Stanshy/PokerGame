@@ -39,8 +39,8 @@ public class Action {
 		return new Action(PlayerAction.RAISE, amount);
 	}
 
-	public static Action allIn(int amount) {
-		return new Action(PlayerAction.ALL_IN, amount);
+	public static Action allIn() {
+		return new Action(PlayerAction.ALL_IN, 0);
 	}
 	
 	public PlayerAction getType() { 

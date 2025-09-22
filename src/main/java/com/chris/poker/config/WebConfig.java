@@ -9,7 +9,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-            .allowedOrigins("https://poker-game-vue.vercel.app")  // 允許的前端網域
+            .allowedOrigins("https://poker-game-vue.vercel.app",
+            		"http://localhost:5173")  // 允許的前端網域
             .allowedMethods("*")
             .allowCredentials(true)
             .allowedHeaders("*");
