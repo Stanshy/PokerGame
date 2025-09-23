@@ -256,6 +256,14 @@ public class GameState {
 
 		return false;
 	}
+	
+	//獲取玩家有效行動
+	public List<PlayerAction> getLegalActions(){
+		 if (currentBettingRound == null) {
+	            return Collections.emptyList();
+	        }
+		return currentBettingRound.getLegalActions();
+	}
 
 	public void startNextHand() {
 		if (canStartNextHand()) {

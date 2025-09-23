@@ -113,6 +113,9 @@ public class BettingRound {
 			success = player.call(currentHighestBet);
 			break;
 		case BET:
+			if (action.getAmount() < bigBlindAmount) {
+		        return false;
+		    }
 			success = player.bet(action.getAmount());
 			if (success) {
 				currentHighestBet = player.getCurrentBet();
@@ -207,6 +210,43 @@ public class BettingRound {
 		}else {
 			return currentHighestBet+lastRaiseIncrement;
 		}
+	}
+	
+	
+	//獲取當前玩家的合法動作
+	public List<PlayerAction> getLegalActions(){
+		Player currentPlayer  = getCurrentPlayer();
+		if(currentPlayer == null) {
+			return Collections.emptyList();
+		}
+		
+		List<PlayerAction> legalAction = new ArrayList<>();
+		
+		if(currentPlayer.canAct()) {
+			legalAction.add(PlayerAction.FOLD);
+		}
+		
+		if(currentPlayer.getCurrentBet() == currentHighestBet) {
+			legalAction.add(PlayerAction.CHECK);
+		}
+		
+		if(currentPlayer.getCurrentBet()<currentHighestBet && currentPlayer.getChips()>0) {
+			legalAction.add(PlayerAction.CALL);
+		}
+		
+		if(currentHighestBet == 0 && currentPlayer.getChips()>0) {
+			legalAction.add(PlayerAction.BET);
+		}
+		
+		if(currentHighestBet>0 && currentPlayer.getChips()>= getMinRaiseAmount()-currentPlayer.getCurrentBet()) {
+			legalAction.add(PlayerAction.RAISE);
+		}
+		
+		if(currentPlayer.getChips()>0) {
+			legalAction.add(PlayerAction.ALL_IN);
+		}
+		
+		return legalAction;
 	}
 
 	// 簡單驗證

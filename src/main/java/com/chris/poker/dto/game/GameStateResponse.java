@@ -23,6 +23,7 @@ public class GameStateResponse {
     private int buttonIndex;
     private boolean bettingRoundComplete;
     private Map<String, List<Card>> showdownHands;
+    private List<String> legalActions;
     
     
     //靜態轉換方法
@@ -52,6 +53,9 @@ public class GameStateResponse {
             .collect(Collectors.toList());
         
         response.pot = PotResponse.fromEntity(gameState.getPot());
+        
+        response.legalActions = gameState.getLegalActions().stream().map(Enum::name)
+        		.collect(Collectors.toList());
         
         return response;
     } 
@@ -123,6 +127,14 @@ public class GameStateResponse {
 
 	public void setShowdownHands(Map<String, List<Card>> showdownHands) {
 		this.showdownHands = showdownHands;
+	}
+
+	public List<String> getLegalActions() {
+		return legalActions;
+	}
+
+	public void setLegalActions(List<String> legalActions) {
+		this.legalActions = legalActions;
 	}
 	
 	

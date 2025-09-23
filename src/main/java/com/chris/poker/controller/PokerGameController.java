@@ -169,6 +169,7 @@ public class PokerGameController {
 		return ResponseEntity.ok(ApiResponse.success(reponse));
 
 	}
+	
 
 	/*
 	 * 座位管理
